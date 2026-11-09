@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELASYSTEM - Soluciones Tecnológicas | Asistencia Técnica Profesional</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            accent: '#00f2fe'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Gradientes y efectos personalizados */
+        .glass-header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.15), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.1), transparent 50%);
+        }
+        .pulse-whatsapp {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- Header & Navegación -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-200 to-sky-400 bg-clip-text text-transparent">ELASYSTEM</span>
+                        <span class="text-[10px] tracking-widest text-sky-400 font-medium -mt-1 uppercase">Soluciones Tecnológicas</span>
+                    </div>
+                </a>
+
+                <!-- Menú Desktop -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#inicio" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">Inicio</a>
+                    <a href="#servicios" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">Servicios</a>
+                    <a href="#nosotros" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">Nosotros</a>
+                    <a href="#ubicacion" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">Ubicación</a>
+                    <a href="#contacto" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Botón de Acción Header -->
+                <div class="hidden md:flex items-center">
+                    <a href="https://wa.me/5491112345678?text=Hola%20ELASYSTEM,%20necesito%20asistencia%20t%C3%A9cnica" 
+                       target="_blank" 
+                       class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 text-slate-950 font-semibold text-sm hover:brightness-110 shadow-lg shadow-sky-500/20 transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Soporte Inmediato</span>
+                    </a>
+                </div>
+
+                <!-- Botón Menú Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Abrir Menú">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Menú Mobile Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-sky-400">Inicio</a>
+            <a href="#servicios" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-sky-400">Servicios</a>
+            <a href="#nosotros" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-sky-400">Nosotros</a>
+            <a href="#ubicacion" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-sky-400">Ubicación</a>
+            <a href="#contacto" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-sky-400">Contacto</a>
+            <a href="https://wa.me/5491112345678?text=Hola%20ELASYSTEM,%20necesito%20asistencia%20t%C3%A9cnica" target="_blank" class="block w-full text-center px-4 py-3 rounded-xl bg-sky-500 text-slate-950 font-bold text-sm">
+                <i class="fa-brands fa-whatsapp mr-2"></i> Contactar por WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-950/80 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+                        Servicio Técnico Especializado
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                        Mantén tus equipos funcionando al <span class="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">máximo rendimiento</span>.
+                    </h1>
+                    
+                    <p class="mt-6 text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        En <strong class="text-slate-200">ELASYSTEM</strong> brindamos asistencia técnica profesional para empresas y particulares. Reparación de hardware, optimización de redes, diagnóstico y soporte continuo.
+                    </p>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#servicios" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-base shadow-lg shadow-sky-500/25 transition-all text-center">
+                            Explorar Servicios
+                        </a>
+                        <a href="https://wa.me/5491112345678?text=Hola%20ELASYSTEM,%20quisiera%20solicitar%20un%20presupuesto" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-500/50 text-slate-200 font-semibold text-base transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-invoice-dollar text-sky-400"></i> Solicitud de Presupuesto
+                        </a>
+                    </div>
+
+                    <!-- Estadísticas / Badges -->
+                    <div class="mt-12 pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <p class="text-2xl font-bold text-white">99%</p>
+                            <p class="text-xs text-slate-400 mt-1">Clientes Satisfechos</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">+10 años</p>
+                            <p class="text-xs text-slate-400 mt-1">De Experiencia</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">24/7</p>
+                            <p class="text-xs text-slate-400 mt-1">Soporte Online</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ilustración / Tarjeta Hero -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-sky-500 to-cyan-500 opacity-30 blur-xl"></div>
+                        <div class="relative bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl">
+                            <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                                </div>
+                                <span class="text-xs text-slate-500 font-mono">system_status: OK</span>
+                            </div>
+
+                            <div class="py-6 space-y-4">
+                                <div class="flex items-start gap-4 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                    <i class="fa-solid fa-screwdriver-wrench text-sky-400 text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-white">Diagnóstico Preciso</h4>
+                                        <p class="text-xs text-slate-400">Identificamos fallas de hardware y software rápidamente.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                    <i class="fa-solid fa-network-wired text-cyan-400 text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-white">Infraestructura & Redes</h4>
+                                        <p class="text-xs text-slate-400">Instalación y configuración de redes cableadas y Wi-Fi.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                    <i class="fa-solid fa-shield-halved text-emerald-400 text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-white">Seguridad de Datos</h4>
+                                        <p class="text-xs text-slate-400">Respaldos automatizados y eliminación de malware.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-800 text-center">
+                                <span class="text-xs text-slate-400">¿Tienes una urgencia informática?</span>
+                                <a href="https://wa.me/5491112345678" target="_blank" class="block mt-2 text-sm font-semibold text-sky-400 hover:text-sky-300">
+                                    Contactar al técnico de guardia &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Servicios -->
+    <section id="servicios" class="py-20 bg-slate-900/50 relative border-t border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400">Nuestras Soluciones</h2>
+                <p class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">Servicios de Asistencia Técnica Integrales</p>
+                <p class="mt-4 text-slate-400">Ofrecemos soporte informático personalizado y adaptado a las necesidades de tu hogar o empresa.</p>
+            </div>
+
+            <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Servicio 1 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/50 transition-all group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-sky-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-laptop-medical"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Reparación de PC & Laptops</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Mantenimiento preventivo y correctivo, cambio de componentes, reparación de placas, reemplazo de pantallas y optimización de velocidad.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-2 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Limpieza física interna</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Cambio de pasta térmica</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Formateo e instalación de OS</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/50 transition-all group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-sky-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Redes y Conectividad</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Diseño e instalación de redes cableadas estructuradas, Wi-Fi de alta cobertura, routers, switches y soluciones Mesh para hogares y oficinas.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-2 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Cableado estructurado Cat6</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Ampliación de señal Wi-Fi</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Configuración de Firewalls</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/50 transition-all group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-sky-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Consultoría & Soporte</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Asesoría técnica para compra de hardware, migraciones tecnológicas y asistencia remota para resolver problemas de software rápidamente.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-2 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Asistencia Remota inmediata</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Asesoría de compras corporativas</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Abonos mensuales para PYMES</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/50 transition-all group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-sky-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-compact-disc"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Soporte de Software</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Instalación de programas, actualización de drivers, eliminación de virus/malware, backup de datos y recuperación de información eliminada.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-2 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Limpieza de virus y spyware</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Recuperación de archivos</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Optimización del sistema</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros / Por qué elegirnos -->
+    <section id="nosotros" class="py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400">Sobre ELASYSTEM</h2>
+                    <h3 class="mt-2 text-3xl font-extrabold text-white">Tu socio de confianza en asistencia técnica</h3>
+                    <p class="mt-4 text-slate-400 leading-relaxed">
+                        En **ELASYSTEM Soluciones tecnológicas**, entendemos lo crucial que es la tecnología en la vida cotidiana y en los negocios. Nuestro compromiso es brindar respuestas rápidas, efectivas y transparentes para minimizar el tiempo de inactividad de tus equipos.
+                    </p>
+
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-sky-950 border border-sky-500/30 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Técnicos Certificados</h4>
+                                <p class="text-slate-400 text-sm">Personal capacitado continuamente en las últimas tecnologías e innovaciones.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-sky-950 border border-sky-500/30 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Rapidez de Respuesta</h4>
+                                <p class="text-slate-400 text-sm">Diagnósticos ágiles y tiempos de entrega optimizados para tu tranquilidad.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-sky-950 border border-sky-500/30 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Garantía Escrita</h4>
+                                <p class="text-slate-400 text-sm">Todos nuestros trabajos de reparación y repuestos cuentan con garantía comprobable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-3xl border border-slate-700/60 shadow-xl">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-sky-400"></i> Proceso de Trabajo Prolijo
+                    </h4>
+                    <ol class="relative border-l border-slate-700 ml-3 space-y-6">
+                        <li class="pl-6">
+                            <span class="absolute -left-3 top-0.5 w-6 h-6 rounded-full bg-sky-500 text-slate-950 font-bold text-xs flex items-center justify-center">1</span>
+                            <h5 class="text-white font-semibold">Recepción y Registro</h5>
+                            <p class="text-xs text-slate-400 mt-1">Ingresamos tu equipo y detallamos los síntomas reportables.</p>
+                        </li>
+                        <li class="pl-6">
+                            <span class="absolute -left-3 top-0.5 w-6 h-6 rounded-full bg-sky-500 text-slate-950 font-bold text-xs flex items-center justify-center">2</span>
+                            <h5 class="text-white font-semibold">Diagnóstico & Presupuesto</h5>
+                            <p class="text-xs text-slate-400 mt-1">Evaluamos la falla y te enviamos el presupuesto antes de reparar.</p>
+                        </li>
+                        <li class="pl-6">
+                            <span class="absolute -left-3 top-0.5 w-6 h-6 rounded-full bg-sky-500 text-slate-950 font-bold text-xs flex items-center justify-center">3</span>
+                            <h5 class="text-white font-semibold">Reparación y Pruebas</h5>
+                            <p class="text-xs text-slate-400 mt-1">Ejecutamos la solución técnica y testeamos el equipo rigurosamente.</p>
+                        </li>
+                        <li class="pl-6">
+                            <span class="absolute -left-3 top-0.5 w-6 h-6 rounded-full bg-sky-500 text-slate-950 font-bold text-xs flex items-center justify-center">4</span>
+                            <h5 class="text-white font-semibold">Entrega & Garantía</h5>
+                            <p class="text-xs text-slate-400 mt-1">Te entregamos tu equipo funcionando al 100% con respaldo técnico.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Ubicación y Contacto -->
+    <section id="ubicacion" class="py-20 bg-slate-900/50 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400">Encuéntranos</h2>
+                <p class="mt-2 text-3xl font-extrabold text-white">Ubicación y Horarios de Atención</p>
+                <p class="mt-4 text-slate-400">Visítanos en nuestro local o contáctanos directamente a través de nuestros canales de atención.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Detalles de Contacto -->
+                <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-8 space-y-6">
+                    <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-4">Información de Contacto</h3>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-white">Dirección</h4>
+                            <p class="text-sm text-slate-400 mt-0.5">Av. Principal Tecnológica #1234, Ciudad</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-white">Horarios de Atención</h4>
+                            <p class="text-sm text-slate-400 mt-0.5">Lunes a Viernes: 08:30 hs - 18:00 hs</p>
+                            <p class="text-sm text-slate-400">Sábados: 09:00 hs - 13:00 hs</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-white">Correo Electrónico</h4>
+                            <p class="text-sm text-slate-400 mt-0.5">contacto@elasystem.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-white">Teléfono Fijo / WhatsApp</h4>
+                            <p class="text-sm text-slate-400 mt-0.5">+54 9 11 1234-5678</p>
+                        </div>
+                    </div>
+
+                    <!-- Botón directo de Mapa -->
+                    <div class="pt-4 border-t border-slate-800">
+                        <a href="https://maps.google.com" target="_blank" class="w-full block text-center px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 font-semibold text-sm transition-colors">
+                            <i class="fa-solid fa-diamond-turn-right mr-2"></i> Cómo llegar en GPS
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mapa Interactivo (Embedded Google Map) -->
+                <div class="lg:col-span-7 h-[420px] bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl relative">
+                    <iframe 
+                        title="Ubicación de ELASYSTEM" 
+                        class="w-full h-full border-0 grayscale opacity-85 hover:grayscale-0 hover:opacity-100 transition-all duration-500" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52563.85870025785!2d-58.43575975!3d-34.603722!2m3!1f0!2f0!3f0!2m3!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20Argentina!5e0!3m2!1ses!2s!4v1680000000000!5m2!1ses!2s" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto Directo -->
+    <section id="contacto" class="py-20 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-white">¿Tienes alguna consulta rápida?</h3>
+                    <p class="text-slate-400 text-sm mt-2">Déjanos tu mensaje y nos pondremos en contacto a la brevedad.</p>
+                </div>
+
+                <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Nombre completo</label>
+                            <input type="text" required placeholder="Tu nombre" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Teléfono / WhatsApp</label>
+                            <input type="tel" required placeholder="Ej: +54 9 11..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tipo de Servicio</label>
+                        <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-sky-500 transition-colors">
+                            <option>Reparación de PC / Laptop</option>
+                            <option>Instalación / Reparación de Redes</option>
+                            <option>Soporte Técnico a Empresas</option>
+                            <option>Instalación de Software / Virus</option>
+                            <option>Otro tipo de consulta</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Detalle de tu consulta</label>
+                        <textarea rows="4" required placeholder="Describe brevemente el problema de tu equipo..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 text-slate-950 font-bold text-base hover:brightness-110 shadow-lg shadow-sky-500/20 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Enviar Consulta</span>
+                    </button>
+                </form>
+
+                <!-- Mensaje de confirmación interactivo -->
+                <div id="formSuccessMessage" class="hidden mt-6 p-4 rounded-xl bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-center text-sm font-medium">
+                    <i class="fa-solid fa-circle-check text-lg mr-2"></i> ¡Gracias por contactarnos! Te responderemos muy pronto.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-slate-950 font-extrabold text-sm">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <span class="font-bold text-slate-200">ELASYSTEM Soluciones tecnológicas</span>
+                </div>
+
+                <div class="flex items-center space-x-6 text-slate-400">
+                    <a href="https://facebook.com" target="_blank" class="hover:text-sky-400 transition-colors" aria-label="Facebook"><i class="fa-brands fa-facebook text-lg"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="hover:text-sky-400 transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-sky-400 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin text-lg"></i></a>
+                </div>
+
+                <p class="text-xs text-slate-500">&copy; <span id="year"></span> ELASYSTEM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/5491112345678?text=Hola%20ELASYSTEM,%20quisiera%20consultar%20por%20un%20servicio%20t%C3%A9cnico" 
+       target="_blank" 
+       aria-label="Contactar por WhatsApp"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl pulse-whatsapp transition-transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Actualizar año dinámicamente
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Menú hamburguesa responsive
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            if (isHidden) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Cerrar menú móvil al hacer click en un enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Manejador del formulario de contacto
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const successMsg = document.getElementById('formSuccessMessage');
+            successMsg.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
